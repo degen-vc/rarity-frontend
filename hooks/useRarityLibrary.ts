@@ -65,6 +65,7 @@ export default function useRarityLibrary(): LibraryInterface {
             return new Promise(async (resolve, reject) => {
                 try {
                     const summoners = await lib?.summoners_full(ids)
+                    console.log(111111111, summoners)
                     resolve(
                         summoners.map((value, i) => {
                             return {
@@ -132,12 +133,13 @@ export default function useRarityLibrary(): LibraryInterface {
                                     total_points: parseInt(value.skills.total_points.toString()),
                                 },
                                 misc: {
-                                    daycare_days_paid: parseInt(value.misc.daycare_days_paid.toString()),
+                                    daycare_days_paid: 0,
                                 },
                             }
                         })
                     )
                 } catch (e) {
+                    console.log('e', e)
                     reject()
                 }
             })
