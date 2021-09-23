@@ -1,5 +1,3 @@
-import { useLingui } from '@lingui/react'
-import { t } from '@lingui/macro'
 import React, { Fragment } from 'react'
 import { SummonerFullData } from '../../hooks/useRarityLibrary'
 import { Menu, Transition } from '@headlessui/react'
@@ -12,8 +10,6 @@ interface SelectorProps {
 }
 
 export default function Selector({ summoners, select }: SelectorProps): JSX.Element {
-    const { i18n } = useLingui()
-
     return (
         summoners.length > 0 && (
             <Menu as="div" className="relative text-right ml-3 mt-2">
@@ -22,7 +18,7 @@ export default function Selector({ summoners, select }: SelectorProps): JSX.Elem
                         <div>
                             <Menu.Button className="flex flex-row justify-end item-center w-full p-2 text-xs border-b-2 border-white font-bold text-white ">
                                 <div className="h-full mr-1.5">
-                                    <span className="uppercase">{i18n._(t`select summoner`)}</span>
+                                    <span className="uppercase">select summoner</span>
                                 </div>
                                 <div>
                                     <ChevronDownIcon width={16} aria-hidden="true" />
@@ -58,11 +54,11 @@ export default function Selector({ summoners, select }: SelectorProps): JSX.Elem
                                                                 ? s.base._name
                                                                 : s.id.toString() +
                                                                   ' ' +
-                                                                  i18n._(t`level`) +
+                                                                  'level' +
                                                                   ' ' +
                                                                   s.base._level +
                                                                   ' ' +
-                                                                  i18n._(CLASSES_NAMES[s.base._class.toString()])}
+                                                                  CLASSES_NAMES[s.base._class.toString()]}
                                                         </span>
                                                     </button>
                                                 )}

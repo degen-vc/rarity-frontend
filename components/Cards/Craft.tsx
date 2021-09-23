@@ -1,6 +1,5 @@
 import { t } from '@lingui/macro'
 import React, { useCallback, useEffect, useState } from 'react'
-import { useLingui } from '@lingui/react'
 import { SummonerFullData } from '../../hooks/useRarityLibrary'
 import { Item, ITEM_TYPE, ITEMS } from '../../constants/codex/items'
 import ItemModal from '../Modal/modals/Item'
@@ -22,8 +21,6 @@ enum View {
 }
 
 function SummonerCraftCard({ summoner }: { summoner: SummonerFullData }): JSX.Element {
-    const { i18n } = useLingui()
-
     const { account } = useActiveWeb3React()
 
     const [item, setItem] = useState<Item | undefined>(undefined)
@@ -78,9 +75,9 @@ function SummonerCraftCard({ summoner }: { summoner: SummonerFullData }): JSX.El
     async function approveGold() {
         toast
             .promise(gold_approve(summoner.id, RARITY_CRAFTING_SUMMONER, CRAFTING_ALLOWANCE), {
-                loading: <b>{i18n._(t`Approving Gold`)}</b>,
-                success: <b>{i18n._(t`Success`)}</b>,
-                error: <b>{i18n._(t`Failed`)}</b>,
+                loading: <b>Approving Gold</b>,
+                success: <b>Success</b>,
+                error: <b>Failed</b>,
             })
             .then(() => setApproval({ gold: true, material: approval.material }))
     }
@@ -88,9 +85,9 @@ function SummonerCraftCard({ summoner }: { summoner: SummonerFullData }): JSX.El
     function approveMaterial() {
         toast
             .promise(material_approve(summoner.id, RARITY_CRAFTING_SUMMONER, CRAFTING_ALLOWANCE), {
-                loading: <b>{i18n._(t`Approving Materials`)}</b>,
-                success: <b>{i18n._(t`Success`)}</b>,
-                error: <b>{i18n._(t`Failed`)}</b>,
+                loading: <b>Approving Materials</b>,
+                success: <b>Success</b>,
+                error: <b>Failed</b>,
             })
             .then(() => setApproval({ gold: approval.gold, material: true }))
     }
@@ -98,9 +95,9 @@ function SummonerCraftCard({ summoner }: { summoner: SummonerFullData }): JSX.El
     function approveGlobal() {
         toast
             .promise(setApprovalForAll(RARITY_CRAFTING_ADDRESS), {
-                loading: <b>{i18n._(t`Approving Crafting!`)}</b>,
-                success: <b>{i18n._(t`Success`)}</b>,
-                error: <b>{i18n._(t`Failed`)}</b>,
+                loading: <b>Approving Crafting!</b>,
+                success: <b>Success</b>,
+                error: <b>Failed</b>,
             })
             .then(() => setGlobalApproval(true))
     }
@@ -150,9 +147,9 @@ function SummonerCraftCard({ summoner }: { summoner: SummonerFullData }): JSX.El
         const currBalance = await balanceOf(account)
         toast
             .promise(craft(summoner.id, getTypeFromView(), itemID, materialUse), {
-                loading: <b>{i18n._(t`Crafting`)}</b>,
-                success: <b>{i18n._(t`Success`)}</b>,
-                error: <b>{i18n._(t`Failed`)}</b>,
+                loading: <b>Crafting</b>,
+                success: <b>Success</b>,
+                error: <b>Failed</b>,
             })
             .then(async () => {
                 setResultModal(true)
@@ -205,11 +202,11 @@ function SummonerCraftCard({ summoner }: { summoner: SummonerFullData }): JSX.El
                     <div className="grid grid-cols-1 md:grid-cols-5 md:gap-2 w-full">
                         <div className="bg-card-top col-span-3 md:p-2 p-1 bg-background-cards border-white border-2 rounded-t-2xl md:rounded-tl-2xl md:rounded-tr-none text-left">
                             <span className="ml-1.5 uppercase">
-                                {i18n._(t`ID`)} {summoner.id}
+                                ID {summoner.id}
                             </span>
                         </div>
                         <div className="w-full mt-3 md:mt-0 md:p-2 p-1 bg-card-button col-span-2 bg-background-cards border-white border-2 md:rounded-tr-2xl text-center">
-                            <span className="uppercase">{i18n._(t`crafting`)}</span>
+                            <span className="uppercase">crafting</span>
                         </div>
                     </div>
                 </div>
@@ -225,7 +222,7 @@ function SummonerCraftCard({ summoner }: { summoner: SummonerFullData }): JSX.El
                                                 style={{ fontSize: '0.8rem' }}
                                                 className="py-1 border-2 px-4 border-white rounded-l-lg uppercase"
                                             >
-                                                {i18n._(t`goods`)}
+                                                goods
                                             </button>
                                         </div>
                                         <div className="text-center -ml-1 mt-2">
@@ -234,7 +231,7 @@ function SummonerCraftCard({ summoner }: { summoner: SummonerFullData }): JSX.El
                                                 onClick={() => setView(View.WEAPONS)}
                                                 className="py-1 border-t-2 border-b-2 px-4 border-white uppercase"
                                             >
-                                                {i18n._(t`weapons`)}
+                                                weapons
                                             </button>
                                         </div>
                                         <div className="text-center mt-2">
@@ -329,7 +326,7 @@ function SummonerCraftCard({ summoner }: { summoner: SummonerFullData }): JSX.El
                                     </div>
                                     <div className="uppercase mt-2">
                                         <span>
-                                            {i18n._(t`approval`)} {i18n._(t`gold`)}
+                                            approval gold
                                         </span>{' '}
                                         {approval.gold ? (
                                             <Image src="/img/approved.png" width={15} height={15} alt="approved" />
@@ -338,14 +335,14 @@ function SummonerCraftCard({ summoner }: { summoner: SummonerFullData }): JSX.El
                                                 className="uppercase border-white border-2 rounded-lg px-2 py-1"
                                                 onClick={async () => approveGold()}
                                             >
-                                                {i18n._(t`Approve`)}
+                                                Approve
                                             </button>
                                         )}
                                     </div>
                                     {summoner.materials.balance > 0 ? (
                                         <div className="uppercase mt-2">
                                             <span>
-                                                {i18n._(t`approval`)} {i18n._(t`material`)}
+                                                approval material
                                             </span>{' '}
                                             {approval.material ? (
                                                 <Image src="/img/approved.png" width={15} height={15} alt="approved" />
@@ -354,7 +351,7 @@ function SummonerCraftCard({ summoner }: { summoner: SummonerFullData }): JSX.El
                                                     className="uppercase border-white border-2 rounded-lg px-2 py-1"
                                                     onClick={async () => approveMaterial()}
                                                 >
-                                                    {i18n._(t`Approve`)}
+                                                    Approve
                                                 </button>
                                             )}
                                         </div>
@@ -412,7 +409,7 @@ function SummonerCraftCard({ summoner }: { summoner: SummonerFullData }): JSX.El
                                         </div>
                                     </div>
                                     <div className="mt-2 justify-center text-center">
-                                        <span> {i18n._(t`Material to use`)}</span>
+                                        <span> Material to use</span>
                                         <div className="flex flex-row mt-2 justify-center">
                                             {materialUse === 0 ? (
                                                 <button
@@ -451,7 +448,7 @@ function SummonerCraftCard({ summoner }: { summoner: SummonerFullData }): JSX.El
                                         </div>
                                         <p className="my-2">
                                             {' '}
-                                            {i18n._(t`Success chance`)}: {calcSuccessRate()}
+                                            Success chance: {calcSuccessRate()}
                                         </p>
                                     </div>
 
@@ -463,7 +460,7 @@ function SummonerCraftCard({ summoner }: { summoner: SummonerFullData }): JSX.El
                                             }}
                                             className="bg-red px-4 mx-2 border-2 border-white p-2 uppercase rounded-lg"
                                         >
-                                            {i18n._(t`cancel`)}
+                                            cancel
                                         </button>
                                         {materialUse === 0 ? (
                                             summoner.base._xp >= 250 &&
@@ -475,11 +472,11 @@ function SummonerCraftCard({ summoner }: { summoner: SummonerFullData }): JSX.El
                                                     onClick={async () => await craftButton()}
                                                     className="bg-green px-4 mx-2 border-2 border-white p-2  uppercase rounded-lg"
                                                 >
-                                                    {i18n._(t`craft`)}
+                                                    craft
                                                 </button>
                                             ) : (
                                                 <button className="bg-green opacity-50 cursor-not-allowed px-4 mx-2 border-2 border-white p-2  uppercase rounded-lg">
-                                                    {i18n._(t`craft`)}
+                                                    craft
                                                 </button>
                                             )
                                         ) : summoner.base._xp >= 250 &&
@@ -492,11 +489,11 @@ function SummonerCraftCard({ summoner }: { summoner: SummonerFullData }): JSX.El
                                                 onClick={async () => await craftButton()}
                                                 className="bg-green px-4 mx-2 border-2 border-white p-2  uppercase rounded-lg"
                                             >
-                                                {i18n._(t`craft`)}
+                                                craft
                                             </button>
                                         ) : (
                                             <button className="bg-green opacity-50 cursor-not-allowed px-4 mx-2 border-2 border-white p-2  uppercase rounded-lg">
-                                                {i18n._(t`craft`)}
+                                                craft
                                             </button>
                                         )}
                                     </div>
@@ -511,7 +508,7 @@ function SummonerCraftCard({ summoner }: { summoner: SummonerFullData }): JSX.El
                                 }}
                                 className="bg-green border-2 border-white p-4 uppercase"
                             >
-                                {i18n._(t`approve crafting`)}
+                                approve crafting
                             </button>
                         </div>
                     )}

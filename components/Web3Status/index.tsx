@@ -37,8 +37,6 @@ function Web3StatusInner() {
 }
 
 export default function Web3Status() {
-    const { i18n } = useLingui()
-
     const { active, account, connector, activate, error } = useWeb3React()
 
     const open = useModalOpen(ApplicationModal.WALLET)
@@ -83,7 +81,7 @@ export default function Web3Status() {
             {!account && !error && (
                 <HeadlessUIModal isOpen={open} onDismiss={toggleModal}>
                     <div className="bg-background-end rounded-lg border-2 border-white">
-                        <ModalHeader title={i18n._(t`choose a wallet`)} onClose={toggleModal} />
+                        <ModalHeader title='choose a wallet' onClose={toggleModal} />
                         <div className="grid grid-cols-1 text-white p-4 pb-8 gap-5">
                             {Object.keys(SUPPORTED_WALLETS).map((k) => {
                                 const option = SUPPORTED_WALLETS[k]

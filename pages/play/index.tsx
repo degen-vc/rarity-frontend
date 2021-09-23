@@ -1,6 +1,4 @@
-import { useLingui } from '@lingui/react'
 import React, { useEffect, useState } from 'react'
-import { t } from '@lingui/macro'
 import { CLASSES_IMAGES, CLASSES_NAMES } from '../../constants/classes'
 import Loader from '../../components/Loader'
 import { Popover } from '@headlessui/react'
@@ -22,8 +20,6 @@ enum View {
 }
 
 export default function Profile(): JSX.Element {
-    const { i18n } = useLingui()
-
     const s = useSummoners()
 
     const [summoners, setSummoners] = useState<SummonerFullData[]>(s)
@@ -64,7 +60,7 @@ export default function Profile(): JSX.Element {
                             <div className="py-4">
                                 <div className="flex items-center justify-between">
                                     <div className="flex items-center z-20 uppercase">
-                                        <h1 className="text-3xl">{i18n._(t`play`)}</h1>
+                                        <h1 className="text-3xl">play</h1>
                                         <div className="hidden md:block sm:ml-2 text-xs">
                                             <div className="flex flex-row justify-between w-full">
                                                 <div className="flex uppercase">
@@ -72,25 +68,25 @@ export default function Profile(): JSX.Element {
                                                         onClick={() => setView(View.stats)}
                                                         className="hover:border-white border-transparent border-2 rounded-xl py-1 px-2 mx-1 uppercase"
                                                     >
-                                                        <span>{i18n._(t`stats`)}</span>
+                                                        <span>stats</span>
                                                     </button>
                                                     <button
                                                         onClick={() => setView(View.skills)}
                                                         className="hover:border-white border-transparent border-2 rounded-xl py-1 px-2 mx-1 uppercase"
                                                     >
-                                                        <span>{i18n._(t`skills`)}</span>
+                                                        <span>skills</span>
                                                     </button>
                                                     <button
                                                         onClick={() => setView(View.inventory)}
                                                         className="hover:border-white border-transparent border-2 rounded-xl py-1 px-2 mx-1 uppercase"
                                                     >
-                                                        <span>{i18n._(t`inventory`)}</span>
+                                                        <span>inventory</span>
                                                     </button>
                                                     <button
                                                         onClick={() => setView(View.crafting)}
                                                         className="hover:border-white border-transparent border-2 rounded-xl py-1 px-2 mx-1 uppercase"
                                                     >
-                                                        <span>{i18n._(t`craft`)}</span>
+                                                        <span>craft</span>
                                                     </button>
                                                 </div>
                                             </div>
@@ -111,7 +107,7 @@ export default function Profile(): JSX.Element {
                                     </div>
                                     <div className="flex -mr-2 md:hidden">
                                         <Popover.Button className="inline-flex items-center justify-center p-2 rounded-md text-primary hover:text-high-emphesis focus:outline-none">
-                                            <span className="sr-only">{i18n._(t`Open Menu`)}</span>
+                                            <span className="sr-only">Open Menu</span>
                                             {open ? (
                                                 <svg
                                                     className="block w-6 h-6"
@@ -166,25 +162,25 @@ export default function Profile(): JSX.Element {
                                         onClick={() => setView(View.stats)}
                                         className="hover:border-white border-transparent border-2 rounded-xl py-1 px-2 mx-1 uppercase"
                                     >
-                                        <span>{i18n._(t`stats`)}</span>
+                                        <span>stats</span>
                                     </button>
                                     <button
                                         onClick={() => setView(View.skills)}
                                         className="hover:border-white border-transparent border-2 rounded-xl py-1 px-2 mx-1 uppercase"
                                     >
-                                        <span>{i18n._(t`skills`)}</span>
+                                        <span>skills</span>
                                     </button>
                                     <button
                                         onClick={() => setView(View.inventory)}
                                         className="hover:border-white border-transparent border-2 rounded-xl py-1 px-2 mx-1 uppercase"
                                     >
-                                        <span>{i18n._(t`inventory`)}</span>
+                                        <span>inventory</span>
                                     </button>
                                     <button
                                         onClick={() => setView(View.crafting)}
                                         className="hover:border-white border-transparent border-2 rounded-xl py-1 px-2 mx-1 uppercase"
                                     >
-                                        <span>{i18n._(t`craft`)}</span>
+                                        <span>craft</span>
                                     </button>
                                 </div>
                             </Popover.Panel>
@@ -203,7 +199,7 @@ export default function Profile(): JSX.Element {
                                     <span className="text-xs md:text-xl mx-2 overflow-hidden whitespace-nowrap">
                                         {selectedSummoner.base._name !== ''
                                             ? selectedSummoner.base._name
-                                            : i18n._(t`unknown`)}
+                                            : 'unknown'}
                                     </span>
                                 </div>{' '}
                                 <button onClick={() => selectNextSummoner()}>
@@ -211,7 +207,7 @@ export default function Profile(): JSX.Element {
                                 </button>
                             </div>
                             <p className="mt-4 md:text-xl uppercase border-2 border-white rounded-3xl">
-                                {i18n._(CLASSES_NAMES[selectedSummoner.base._class.toString()])}
+                                {CLASSES_NAMES[selectedSummoner.base._class.toString()]}
                             </p>
                         </div>
 

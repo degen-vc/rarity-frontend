@@ -1,7 +1,5 @@
 import ModalHeader from '../ModalHeader'
-import { t } from '@lingui/macro'
 import React from 'react'
-import { useLingui } from '@lingui/react'
 import { utils } from 'ethers'
 import Modal from '../index'
 import {
@@ -22,13 +20,11 @@ interface ItemModalProps {
 }
 
 export default function ItemModal({ open, closeFunction, item, itemType, checkOnly }: ItemModalProps): JSX.Element {
-    const { i18n } = useLingui()
-
     return (
         <Modal isOpen={open} onDismiss={() => (checkOnly ? closeFunction(true) : closeFunction(false))}>
             <div className="bg-card-bottom rounded-lg border-2 border-white">
                 <ModalHeader
-                    title={i18n._(t`Equipment Info`)}
+                    title='Equipment Info'
                     onClose={() => (checkOnly ? closeFunction(true) : closeFunction(false))}
                 />
                 {item && (
@@ -89,7 +85,7 @@ export default function ItemModal({ open, closeFunction, item, itemType, checkOn
                                 onClick={() => closeFunction(true)}
                                 className="bg-green text-center w-full rounded-2xl border-white border-2 mt-4 uppercase p-2"
                             >
-                                {i18n._(t`Start Craft`)}
+                                Start Craft
                             </button>
                         )}
                     </div>

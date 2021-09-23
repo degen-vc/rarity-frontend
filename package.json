@@ -9,7 +9,7 @@
         "lingui": "lingui extract --clean --overwrite && lingui compile",
         "start": "next start",
         "lint": "next lint",
-        "export": "next export",
+        "export": "next build && next export",
         "predeploy": "next build",
         "deploy": "gh-pages -d out/_next",
         "format": "prettier --write ."

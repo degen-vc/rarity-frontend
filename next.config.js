@@ -1,5 +1,4 @@
 const linguiConfig = require('./lingui.config.js')
-const { locales, sourceLocale } = linguiConfig
 const runtimeCaching = require('next-pwa/cache')
 const withPWA = require('next-pwa')
 
@@ -21,11 +20,6 @@ const nextConfig = {
         disable: process.env.NODE_ENV === 'development',
     },
     reactStrictMode: true,
-    i18n: {
-        localeDetection: true,
-        locales,
-        defaultLocale: sourceLocale,
-    },
     async redirects() {
         return [
             {

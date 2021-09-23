@@ -1,6 +1,4 @@
-import { useLingui } from '@lingui/react'
 import React, { useEffect, useState } from 'react'
-import { t } from '@lingui/macro'
 import { useSummoners } from '../../state/summoners/hooks'
 import { calcXPForNextLevel } from '../../functions/calcXPForNextLevel'
 import SummonerSummaryCard from '../../components/Cards/Summary'
@@ -23,8 +21,6 @@ enum Modal {
     DAYCARE,
 }
 export default function Summoners(): JSX.Element {
-    const { i18n } = useLingui()
-
     const { library, account } = useActiveWeb3React()
 
     const s = useSummoners()
@@ -75,11 +71,11 @@ export default function Summoners(): JSX.Element {
                     <>
                         <div className="flex flex-row items-center justify-between">
                             <div>
-                                <h1 className="text-2xl xl:text-3xl">{i18n._(t`summoners`)}</h1>
+                                <h1 className="text-2xl xl:text-3xl">summoners</h1>
                             </div>
                             <div className="uppercase">
-                                <h1 className="text-lg">{i18n._(t`one-click`)}</h1>
-                                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 text-xs gap-y-3">
+                                <h1 className="text-lg">one-click</h1>
+                                <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 text-xs gap-y-3">
                                     <button
                                         className={classNames(
                                             'p-2 border-white border-2 bg-background-contrast rounded-lg mx-1 uppercase',
@@ -87,7 +83,7 @@ export default function Summoners(): JSX.Element {
                                         )}
                                         onClick={() => setModal(Modal.ADVENTURE)}
                                     >
-                                        <p>{i18n._(t`adventure`)}</p>
+                                        <p>adventure</p>
                                         <p className="mt-1">{adventure.length}</p>
                                     </button>
                                     <button
@@ -97,7 +93,7 @@ export default function Summoners(): JSX.Element {
                                         )}
                                         onClick={() => setModal(Modal.LEVELUP)}
                                     >
-                                        <p>{i18n._(t`level-up`)}</p>
+                                        <p>level-up</p>
                                         <p className="mt-1">{level.length}</p>
                                     </button>
                                     <button
@@ -107,7 +103,7 @@ export default function Summoners(): JSX.Element {
                                         )}
                                         onClick={() => setModal(Modal.GOLD)}
                                     >
-                                        <p>{i18n._(t`claim gold`)}</p>
+                                        <p>claim gold</p>
                                         <p className="mt-1">{gold.length}</p>
                                     </button>
                                     <button
@@ -117,15 +113,15 @@ export default function Summoners(): JSX.Element {
                                         )}
                                         onClick={() => setModal(Modal.DUNGEON)}
                                     >
-                                        <p>{i18n._(t`dungeon`)}</p>
+                                        <p>dungeon</p>
                                         <p className="mt-1">{dungeon.length}</p>
                                     </button>
-                                    <button
+                                    {/* <button
                                         className="p-2 border-white border-2 bg-background-contrast rounded-lg mx-1 uppercase"
                                         onClick={() => setModal(Modal.DAYCARE)}
                                     >
-                                        {i18n._(t`daycare`)}
-                                    </button>
+                                        daycare
+                                    </button> */}
                                 </div>
                             </div>
                         </div>

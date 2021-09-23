@@ -10,12 +10,7 @@ module.exports = {
     format: 'minimal',
     formatOptions: { origins: false, lineNumbers: false },
     sourceLocale: 'en',
-    locales: ['en', 'zh_TW', 'zh_CN', 'el', 'tr'],
     orderBy: 'messageId',
     pseudoLocale: '',
     rootDir: '.',
-    runtimeConfigModule: {
-        i18n: ['@lingui/core', 'i18n'],
-        Trans: ['@lingui/react', 'Trans'],
-    },
 }

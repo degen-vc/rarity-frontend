@@ -20,8 +20,6 @@ import ApplicationUpdater from '../state/application/updater'
 import MulticallUpdater from '../state/multicall/updater'
 import SummonersUpdater from '../state/summoners/updater'
 import Head from 'next/head'
-import { I18nProvider } from '@lingui/react'
-import { i18n } from '@lingui/core'
 import { useRouter } from 'next/router'
 const Web3ProviderNetwork = dynamic(() => import('../components/Web3ProviderNetwork'), { ssr: false })
 
@@ -43,23 +41,6 @@ export default function MyApp({
         Provider: FunctionComponent
     }
 }) {
-    const { locale } = useRouter()
-
-    useEffect(() => {
-        async function load(locale) {
-            i18n.loadLocaleData(locale, { plurals: plurals[locale.split('_')[0]] })
-
-            // Load fallback messages
-            const { messages } = await import(`@lingui/loader!./../locale/${locale}.json?raw-lingui`)
-            i18n.load(locale, messages)
-
-            i18n.activate(locale)
-        }
-
-        load(locale)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [locale])
-
     useEffect(() => {
         if (process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS) {
             ReactGA.initialize(process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS)
@@ -85,7 +66,7 @@ export default function MyApp({
                     name="viewport"
                     content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no"
                 />
-                <title key="title">Rarity Game | Free to mint D&D blockchain based game</title>
+                <title key="title">Scarcity Game | Free to mint D&D blockchain based game</title>
 
                 <meta key="description" name="description" content="Free to mint D&D blockchain based game" />
 
@@ -126,32 +107,31 @@ export default function MyApp({
                 <meta key="og:image" property="og:image" content="https://rarity.game/apple-icon-180.png" />
                 <meta key="og:description" property="og:description" content="Free to mint D&D blockchain based game" />
             </Head>
-            <I18nProvider i18n={i18n} forceRenderOnLocaleChange={false}>
-                <ApolloProvider client={client}>
-                    <Web3ReactProvider getLibrary={getLibrary}>
-                        <Web3ProviderNetwork getLibrary={getLibrary}>
-                            <Web3ReactManager>
-                                <ReduxProvider store={store}>
-                                    <PersistGate loading={<Dots>loading</Dots>} persistor={persistor}>
-                                        <>
-                                            <ApplicationUpdater />
-                                            <MulticallUpdater />
-                                            <SummonersUpdater />
-                                        </>
-                                        <Provider>
-                                            <Layout>
-                                                <Guard>
-                                                    <Component {...pageProps} />
-                                                </Guard>
-                                            </Layout>
-                                        </Provider>
-                                    </PersistGate>
-                                </ReduxProvider>
-                            </Web3ReactManager>
-                        </Web3ProviderNetwork>
-                    </Web3ReactProvider>
-                </ApolloProvider>
-            </I18nProvider>
+
+            <ApolloProvider client={client}>
+                <Web3ReactProvider getLibrary={getLibrary}>
+                    <Web3ProviderNetwork getLibrary={getLibrary}>
+                        <Web3ReactManager>
+                            <ReduxProvider store={store}>
+                                <PersistGate loading={<Dots>loading</Dots>} persistor={persistor}>
+                                    <>
+                                        <ApplicationUpdater />
+                                        <MulticallUpdater />
+                                        <SummonersUpdater />
+                                    </>
+                                    <Provider>
+                                        <Layout>
+                                            <Guard>
+                                                <Component {...pageProps} />
+                                            </Guard>
+                                        </Layout>
+                                    </Provider>
+                                </PersistGate>
+                            </ReduxProvider>
+                        </Web3ReactManager>
+                    </Web3ProviderNetwork>
+                </Web3ReactProvider>
+            </ApolloProvider>
         </Fragment>
     )
 }

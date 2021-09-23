@@ -1,4 +1,3 @@
-import { useLingui } from '@lingui/react'
 import { t } from '@lingui/macro'
 import React, { Fragment } from 'react'
 import { SummonerFullData } from '../../hooks/useRarityLibrary'
@@ -11,7 +10,6 @@ interface SelectorProps {
 }
 
 export default function Filter({ summoners, filteredSummoners }: SelectorProps): JSX.Element {
-    const { i18n } = useLingui()
 
     const filters = [
         {
@@ -70,14 +68,14 @@ export default function Filter({ summoners, filteredSummoners }: SelectorProps):
                 filteredSummoners(summonersFiltered)
             },
         },
-        {
-            name: 'by daycare registry ',
-            func: (s: SummonerFullData[]) => {
-                const summonersFiltered: SummonerFullData[] = [].concat(s)
-                summonersFiltered.sort((a, b) => a.misc.daycare_days_paid - b.misc.daycare_days_paid)
-                filteredSummoners(summonersFiltered)
-            },
-        },
+        // {
+        //     name: 'by daycare registry ',
+        //     func: (s: SummonerFullData[]) => {
+        //         const summonersFiltered: SummonerFullData[] = [].concat(s)
+        //         summonersFiltered.sort((a, b) => a.misc.daycare_days_paid - b.misc.daycare_days_paid)
+        //         filteredSummoners(summonersFiltered)
+        //     },
+        // },
     ]
 
     return (
@@ -87,7 +85,7 @@ export default function Filter({ summoners, filteredSummoners }: SelectorProps):
                     <div>
                         <Menu.Button className="flex flex-row justify-end item-center w-full p-2 text-xs border-b-2 border-white font-bold text-white ">
                             <div className="h-full mr-1.5">
-                                <span className="uppercase">{i18n._(t`order summoners`)}</span>
+                                <span className="uppercase">rank summoners</span>
                             </div>
                             <div>
                                 <ChevronDownIcon width={16} aria-hidden="true" />

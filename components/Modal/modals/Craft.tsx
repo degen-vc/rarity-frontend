@@ -1,7 +1,5 @@
 import ModalHeader from '../ModalHeader'
-import { t } from '@lingui/macro'
 import React, { useEffect, useState } from 'react'
-import { useLingui } from '@lingui/react'
 import Modal from '../index'
 import { Item } from '../../../constants/codex/items'
 import Loader from '../../Loader'
@@ -21,7 +19,6 @@ export default function CraftResultModal({
     item,
     loading,
 }: CraftModalProps): JSX.Element {
-    const { i18n } = useLingui()
 
     const phrases = [
         'Adding goblin hair... ',
@@ -56,7 +53,7 @@ export default function CraftResultModal({
             <div className="bg-card-bottom rounded-lg border-2 border-white">
                 {loading ? (
                     <>
-                        <ModalHeader title={i18n._(t`CRAFTING!`)} onClose={closeFunction} />
+                        <ModalHeader title='CRAFTING!' onClose={closeFunction} />
                         <div className="text-center flex flex-row justify-center mb-5">
                             <div className="flex flex-row">
                                 <p className="text-white text-center">{phrase}</p>
@@ -68,18 +65,18 @@ export default function CraftResultModal({
                     </>
                 ) : success ? (
                     <>
-                        <ModalHeader title={i18n._(t`CONGRATULATIONS!`)} onClose={closeFunction} />
+                        <ModalHeader title='CONGRATULATIONS!' onClose={closeFunction} />
                         <div className="text-center p-2 mb-3 -mt-1 text-white">
-                            <p className="text-center">{i18n._(t`You have successfully crafted`)}</p>
+                            <p className="text-center">You have successfully crafted</p>
                             <p className="text-center uppercase mt-2">{item.name}</p>
                         </div>
                     </>
                 ) : (
                     <>
-                        <ModalHeader title={i18n._(t`OH NO...`)} onClose={closeFunction} />
+                        <ModalHeader title='OH NO...' onClose={closeFunction} />
                         <div className="text-center p-2 mb-3 -mt-1 text-white">
-                            <p>{i18n._(t`Your summoner messed up. `)}</p>
-                            <p>{i18n._(t`Better luck next time!`)}</p>
+                            <p>Your summoner messed up. </p>
+                            <p>Better luck next time!</p>
                         </div>
                     </>
                 )}

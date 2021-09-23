@@ -1,5 +1,3 @@
-import { t } from '@lingui/macro'
-import { useLingui } from '@lingui/react'
 import { RefreshIcon } from '@heroicons/react/outline'
 import { QuestionMarkCircleIcon, PlusIcon, MinusIcon } from '@heroicons/react/solid'
 import { utils } from 'ethers'
@@ -14,8 +12,6 @@ import useRarityAttributes from '../../hooks/useRarityAttributes'
 import { SummonerFullData } from '../../hooks/useRarityLibrary'
 
 function SummonerStatsCard({ summoner }: { summoner: SummonerFullData }): JSX.Element {
-    const { i18n } = useLingui()
-
     const { point_buy } = useRarityAttributes()
 
     const [attribute, setAttribute] = useState('str')
@@ -82,9 +78,9 @@ function SummonerStatsCard({ summoner }: { summoner: SummonerFullData }): JSX.El
 
     async function claimGold() {
         await toast.promise(claim(summoner.id), {
-            loading: <b>{i18n._(t`Claiming gold`)}</b>,
-            success: <b>{i18n._(t`Success`)}</b>,
-            error: <b>{i18n._(t`Failed`)}</b>,
+            loading: <b>Claiming gold</b>,
+            success: <b>Success</b>,
+            error: <b>Failed</b>,
         })
     }
 
@@ -100,9 +96,9 @@ function SummonerStatsCard({ summoner }: { summoner: SummonerFullData }): JSX.El
                 additions['cha'] + summoner.ability_scores.attributes._cha
             ),
             {
-                loading: <b>{i18n._(t`Assigning points`)}</b>,
-                success: <b>{i18n._(t`Success`)}</b>,
-                error: <b>{i18n._(t`Failed`)}</b>,
+                loading: <b>Assigning points</b>,
+                success: <b>Success</b>,
+                error: <b>Failed</b>,
             }
         )
     }
@@ -113,7 +109,7 @@ function SummonerStatsCard({ summoner }: { summoner: SummonerFullData }): JSX.El
                 <div className="grid grid-cols-1 md:grid-cols-5 md:gap-2 w-full">
                     <div className="bg-card-top col-span-2 md:p-2 p-1 bg-background-cards border-white border-2 rounded-t-2xl text-left">
                         <span className="ml-1.5">
-                            {i18n._(t`ID`)}: {summoner.id}
+                            ID: {summoner.id}
                         </span>
                     </div>
                 </div>
@@ -122,12 +118,12 @@ function SummonerStatsCard({ summoner }: { summoner: SummonerFullData }): JSX.El
                 <div className="flex flex-row w-full">
                     <div className="grid grid-cols-1 md:grid-cols-2 w-full px-4 mt-2">
                         <div>
-                            <span className="uppercase">{i18n._(t`level`)}</span>
+                            <span className="uppercase">level</span>
                             <span className="text-transparent -ml-1 md:ml-2">&nbsp;</span>:
                             <span className="ml-1.5">{summoner.base._level.toString()}</span>
                         </div>
                         <div>
-                            <span className="uppercase">{i18n._(t`ap`)}</span>
+                            <span className="uppercase">ap</span>
                             <span className="text-transparent ml-8 md:ml-8">&nbsp;</span>:
                             <span className="ml-1.5">{totalAP.toString()}</span>
                         </div>
@@ -136,12 +132,12 @@ function SummonerStatsCard({ summoner }: { summoner: SummonerFullData }): JSX.El
                 <div className="flex flex-row w-full">
                     <div className="grid grid-cols-1 md:grid-cols-2 w-full px-4 md:mt-2">
                         <div>
-                            <span className="uppercase">{i18n._(t`xp`)}</span>
+                            <span className="uppercase">xp</span>
                             <span className="text-transparent ml-8 md:ml-11">&nbsp;</span>:
                             <span className="ml-1.5">{summoner.base._xp}</span>
                         </div>
                         <div>
-                            <span className="uppercase">{i18n._(t`gold`)}</span>
+                            <span className="uppercase">gold</span>
                             <span className="text-transparent ml-2 md:ml-2">&nbsp;</span>:
                             <span className="ml-1.5">{summoner.gold.balance}</span>
                         </div>
@@ -164,7 +160,7 @@ function SummonerStatsCard({ summoner }: { summoner: SummonerFullData }): JSX.El
                                 </button>
                             </div>
                             <div>
-                                <span className="uppercase">{i18n._(t`str`)}</span>
+                                <span className="uppercase">str</span>
                                 <span className="text-transparent ml-2 md:ml-5">&nbsp;</span>:
                                 <span className="ml-1.5">
                                     {summoner.ability_scores.attributes._str + additions['str']}
@@ -201,7 +197,7 @@ function SummonerStatsCard({ summoner }: { summoner: SummonerFullData }): JSX.El
                                 </button>
                             </div>
                             <div>
-                                <span className="uppercase">{i18n._(t`int`)}</span>
+                                <span className="uppercase">int</span>
                                 <span className="text-transparent ml-3 md:ml-3">&nbsp;</span>:
                                 <span className="ml-1.5">
                                     {summoner.ability_scores.attributes._int + additions['int']}
@@ -242,7 +238,7 @@ function SummonerStatsCard({ summoner }: { summoner: SummonerFullData }): JSX.El
                                 </button>
                             </div>
                             <div>
-                                <span className="uppercase">{i18n._(t`dex`)}</span>
+                                <span className="uppercase">dex</span>
                                 <span className="text-transparent ml-2 md:ml-5">&nbsp;</span>:
                                 <span className="ml-1.5">
                                     {summoner.ability_scores.attributes._dex + additions['dex']}
@@ -279,7 +275,7 @@ function SummonerStatsCard({ summoner }: { summoner: SummonerFullData }): JSX.El
                                 </button>
                             </div>
                             <div>
-                                <span className="uppercase">{i18n._(t`wis`)}</span>
+                                <span className="uppercase">wis</span>
                                 <span className="text-transparent ml-3 md:ml-3">&nbsp;</span>:
                                 <span className="ml-1.5">
                                     {summoner.ability_scores.attributes._wis + additions['wis']}
@@ -320,7 +316,7 @@ function SummonerStatsCard({ summoner }: { summoner: SummonerFullData }): JSX.El
                                 </button>
                             </div>
                             <div>
-                                <span className="uppercase">{i18n._(t`con`)}</span>
+                                <span className="uppercase">con</span>
                                 <span className="text-transparent ml-2 md:ml-5">&nbsp;</span>:
                                 <span className="ml-1.5">
                                     {summoner.ability_scores.attributes._con + additions['con']}
@@ -357,7 +353,7 @@ function SummonerStatsCard({ summoner }: { summoner: SummonerFullData }): JSX.El
                                 </button>
                             </div>
                             <div>
-                                <span className="uppercase">{i18n._(t`cha`)}</span>
+                                <span className="uppercase">cha</span>
                                 <span className="text-transparent ml-2 md:ml-2">&nbsp;</span>:
                                 <span className="ml-1.5">
                                     {summoner.ability_scores.attributes._cha + additions['cha']}
@@ -397,13 +393,13 @@ function SummonerStatsCard({ summoner }: { summoner: SummonerFullData }): JSX.El
                     {summoner.gold.claimable > 0 ? (
                         <div className="hover:bg-card-content text-lg hover:text-grey bg-card-bottom col-span-3 bg-background-cards border-white border-2 mb-3 md:mb-0 md:rounded-bl-2xl text-center">
                             <button className="w-full p-2" onClick={() => claimGold()}>
-                                <span className="uppercase">{i18n._(t`claim gold`)}</span>
+                                <span className="uppercase">claim gold</span>
                             </button>
                         </div>
                     ) : (
                         <div className="bg-card-content cursor-not-allowed text-lg text-grey bg-card-bottom col-span-3 bg-background-cards border-white border-2 mb-3 md:mb-0 md:rounded-bl-2xl text-center">
                             <button className="w-full p-2">
-                                <span className="uppercase">{i18n._(t`claim gold`)}</span>
+                                <span className="uppercase">claim gold</span>
                             </button>
                         </div>
                     )}
@@ -411,13 +407,13 @@ function SummonerStatsCard({ summoner }: { summoner: SummonerFullData }): JSX.El
                     {totalAP === 0 && assignable ? (
                         <div className="hover:bg-card-content text-lg hover:text-grey col-span-2 bg-card-bottom bg-background-cards border-2 rounded-b-2xl md:rounded-br-2xl text-center border-white">
                             <button className="w-full p-2" onClick={() => assignPoints()}>
-                                <span className="uppercase">{i18n._(t`assign points`)}</span>
+                                <span className="uppercase">assign points</span>
                             </button>
                         </div>
                     ) : (
                         <div className="bg-card-content text-grey text-lg cursor-not-allowed col-span-2 bg-card-bottom bg-background-cards border-2 rounded-b-2xl md:rounded-br-2xl text-center border-white">
                             <button className="w-full p-2">
-                                <span className="uppercase">{i18n._(t`assign points`)}</span>
+                                <span className="uppercase">assign points</span>
                             </button>
                         </div>
                     )}
@@ -425,9 +421,9 @@ function SummonerStatsCard({ summoner }: { summoner: SummonerFullData }): JSX.El
             </div>
             <HeadlessUIModal isOpen={modal} onDismiss={() => setModalOpen(false)}>
                 <div className="bg-background-end rounded-lg border-2 border-white">
-                    <ModalHeader title={i18n._(ATTRIBUTES[attribute].name)} onClose={() => setModalOpen(false)} />
+                    <ModalHeader title={ATTRIBUTES[attribute].name} onClose={() => setModalOpen(false)} />
                     <div className="text-justify text-white p-4 pb-8 gap-5">
-                        <h2>{i18n._(ATTRIBUTES[attribute].description)}</h2>
+                        <h2>{ATTRIBUTES[attribute].description}</h2>
                     </div>
                     <div className="flex flex-row justify-center pb-8">
                         <a
@@ -436,7 +432,7 @@ function SummonerStatsCard({ summoner }: { summoner: SummonerFullData }): JSX.El
                             rel="noreferrer"
                             href={ATTRIBUTES[attribute].url}
                         >
-                            <h2>{i18n._(t`read more`)}</h2>
+                            <h2>read more</h2>
                         </a>
                     </div>
                 </div>

@@ -3,15 +3,10 @@ import { Popover } from '@headlessui/react'
 import Web3Status from '../Web3Status'
 import { useActiveWeb3React } from '../../hooks/useActiveWeb3React'
 import { useETHBalances } from '../../state/wallet/hooks'
-import LangSwitcher from '../LanguageSwitch'
-import { t } from '@lingui/macro'
-import { useLingui } from '@lingui/react'
 import Link from 'next/link'
 import DonateModal from '../Modal/modals/Donate'
 
 function AppBar(): JSX.Element {
-    const { i18n } = useLingui()
-
     const { account, chainId } = useActiveWeb3React()
 
     const userEthBalance = useETHBalances(account ? [account] : [])?.[account ?? '']
@@ -20,7 +15,7 @@ function AppBar(): JSX.Element {
         return (
             <Link href="/play" passHref={true}>
                 <div className="cursor-pointer hover:border-white border-transparent border-2 rounded-xl py-1 px-2">
-                    <h2>{i18n._(t`Play`)}</h2>
+                    <h2>Play</h2>
                 </div>
             </Link>
         )
@@ -30,7 +25,7 @@ function AppBar(): JSX.Element {
         return (
             <Link href="/summoners" passHref={true}>
                 <div className="cursor-pointer hover:border-white border-transparent border-2 rounded-xl py-1 px-2">
-                    <h2>{i18n._(t`Summoners`)}</h2>
+                    <h2>Summoners</h2>
                 </div>
             </Link>
         )
@@ -40,7 +35,7 @@ function AppBar(): JSX.Element {
         return (
             <Link href="/analytics" passHref={true}>
                 <div className="cursor-pointer hover:border-white border-transparent border-2 rounded-xl py-1 px-2 mx-1">
-                    <h2>{i18n._(t`Analytics`)}</h2>
+                    <h2>Analytics</h2>
                 </div>
             </Link>
         )
@@ -48,9 +43,9 @@ function AppBar(): JSX.Element {
 
     function names(): JSX.Element {
         return (
-            <Link href="https://names.rarity.game" passHref={true}>
+            <Link href="/analytics" passHref={true}>
                 <div className="cursor-pointer hover:border-white border-transparent border-2 rounded-xl py-1 px-2 mx-1">
-                    <h2>{i18n._(t`names`)}</h2>
+                    <h2>names</h2>
                 </div>
             </Link>
         )
@@ -59,11 +54,11 @@ function AppBar(): JSX.Element {
     function market(): JSX.Element {
         return (
             <Link
-                href="https://paintswap.finance/nfts/collections/0xc73e1237a5a9ba5b0f790b6580f32d04a727dc19"
+                href="/analytics"
                 passHref={true}
             >
                 <div className="cursor-pointer hover:border-white border-transparent border-2 rounded-xl py-1 px-2 mx-1">
-                    <h2>{i18n._(t`market`)}</h2>
+                    <h2>market</h2>
                 </div>
             </Link>
         )
@@ -85,7 +80,7 @@ function AppBar(): JSX.Element {
                                 <div className="flex items-center z-10">
                                     <Link href="/" passHref={true}>
                                         <div className="uppercase cursor-pointer text-center tracking-widest text-xl">
-                                            <h1>RARITY</h1>
+                                            <h1>SCARCITY</h1>
                                             <h1>Adventure</h1>
                                         </div>
                                     </Link>
@@ -101,7 +96,7 @@ function AppBar(): JSX.Element {
                                                     onClick={() => setModal(true)}
                                                     className="uppercase border-contrast border-transparent border-2 rounded-xl py-1 px-2 mx-1"
                                                 >
-                                                    <h2>{i18n._(t`Donate`)}</h2>
+                                                    <h2>Donate</h2>
                                                 </button>
                                             )}
                                         </div>
@@ -110,9 +105,7 @@ function AppBar(): JSX.Element {
                                 <div className="fixed bottom-0 right-0 z-40 flex flex-row items-center justify-center w-full p-4 lg:w-auto bg-black lg:relative lg:p-0 lg:bg-transparent">
                                     <div className="flex items-center justify-between w-full space-x-2 sm:justify-end z-20">
                                         <div className="w-auto mx-auto flex items-center rounded p-0.5 whitespace-nowrap text-sm font-bold cursor-pointer select-none pointer-events-auto z-20">
-                                            <div className="hidden md:inline-block mx-2">
-                                                <LangSwitcher />
-                                            </div>
+                                            <div className="hidden md:inline-block mx-2"></div>
                                             {account && chainId && userEthBalance && (
                                                 <>
                                                     <div className="px-3 mx-3 py-2 text-primary text-bold border-white border-2 rounded-lg">
@@ -126,7 +119,7 @@ function AppBar(): JSX.Element {
                                 </div>
                                 <div className="flex -mr-2 md:hidden">
                                     <Popover.Button className="inline-flex items-center justify-center p-2 rounded-md text-primary hover:text-high-emphesis focus:outline-none">
-                                        <span className="sr-only">{i18n._(t`Open Menu`)}</span>
+                                        <span className="sr-only">Open Menu</span>
                                         {open ? (
                                             <svg
                                                 className="block w-6 h-6"
@@ -176,7 +169,7 @@ function AppBar(): JSX.Element {
                                         onClick={() => setModal(true)}
                                         className="uppercase border-contrast border-transparent border-2 rounded-xl py-1 px-2 mx-1"
                                     >
-                                        <h2>{i18n._(t`Donate`)}</h2>
+                                        <h2>Donate</h2>
                                     </button>
                                 )}
                             </div>

@@ -1,10 +1,7 @@
-import { t } from '@lingui/macro'
 import React from 'react'
-import { useLingui } from '@lingui/react'
 import { SummonerFullData } from '../../hooks/useRarityLibrary'
 
 function SummonerInventoryCard({ summoner }: { summoner: SummonerFullData }): JSX.Element {
-    const { i18n } = useLingui()
 
     return (
         <div className="max-w-screen-md mx-auto">
@@ -12,11 +9,11 @@ function SummonerInventoryCard({ summoner }: { summoner: SummonerFullData }): JS
                 <div className="grid grid-cols-1 md:grid-cols-5 md:gap-2 w-full">
                     <div className="bg-card-top col-span-3 md:p-2 p-1 bg-background-cards border-white border-2 rounded-t-2xl md:rounded-tl-2xl md:rounded-tr-none text-left">
                         <span className="ml-1.5 uppercase">
-                            {i18n._(t`ID`)} {summoner.id}
+                            ID {summoner.id}
                         </span>
                     </div>
                     <div className="w-full mt-3 md:mt-0 md:p-2 p-1 bg-card-button col-span-2 bg-background-cards border-white border-2 md:rounded-tr-2xl text-center">
-                        <span className="uppercase">{i18n._(t`inventory`)}</span>
+                        <span className="uppercase">inventory</span>
                     </div>
                 </div>
             </div>

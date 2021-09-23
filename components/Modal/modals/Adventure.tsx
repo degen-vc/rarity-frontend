@@ -1,8 +1,6 @@
 import HeadlessUIModal from '../HeadlessUIModal'
 import ModalHeader from '../ModalHeader'
-import { t } from '@lingui/macro'
 import React, { useCallback, useEffect, useState } from 'react'
-import { useLingui } from '@lingui/react'
 import toast from 'react-hot-toast'
 import useRarity from '../../../hooks/useRarity'
 import useActiveWeb3React from '../../../hooks/useActiveWeb3React'
@@ -18,8 +16,6 @@ interface AdventureModalProps {
 }
 
 export default function AdventureModal({ open, closeFunction, summoners }: AdventureModalProps): JSX.Element {
-    const { i18n } = useLingui()
-
     const { account } = useActiveWeb3React()
 
     const { isApprovedForAll, setApprovalForAll } = useRarity()
@@ -48,11 +44,11 @@ export default function AdventureModal({ open, closeFunction, summoners }: Adven
                 {
                     loading: (
                         <b>
-                            {i18n._(t`Sending chunk:`)} {i + 1} of {chunks.length}{' '}
+                            Sending chunk: {i + 1} of {chunks.length}{' '}
                         </b>
                     ),
-                    success: <b>{i18n._(t`Success`)}</b>,
-                    error: <b>{i18n._(t`Failed`)}</b>,
+                    success: <b>Success</b>,
+                    error: <b>Failed</b>,
                 }
             )
         }
@@ -71,11 +67,11 @@ export default function AdventureModal({ open, closeFunction, summoners }: Adven
                     {
                         loading: (
                             <b>
-                                {i18n._(t`Sending chunk:`)} {i + 1} of {chunks.length}{' '}
+                                Sending chunk: {i + 1} of {chunks.length}{' '}
                             </b>
                         ),
-                        success: <b>{i18n._(t`Success`)}</b>,
-                        error: <b>{i18n._(t`Failed`)}</b>,
+                        success: <b>Success</b>,
+                        error: <b>Failed</b>,
                     }
                 )
             } else {
@@ -88,11 +84,11 @@ export default function AdventureModal({ open, closeFunction, summoners }: Adven
                     {
                         loading: (
                             <b>
-                                {i18n._(t`Sending chunk:`)} {i + 1} of {chunks.length}{' '}
+                                Sending chunk: {i + 1} of {chunks.length}{' '}
                             </b>
                         ),
-                        success: <b>{i18n._(t`Success`)}</b>,
-                        error: <b>{i18n._(t`Failed`)}</b>,
+                        success: <b>Success</b>,
+                        error: <b>Failed</b>,
                     }
                 )
             }
@@ -102,9 +98,9 @@ export default function AdventureModal({ open, closeFunction, summoners }: Adven
     async function approveHelper() {
         toast
             .promise(setApprovalForAll(RARITY_HELPER_ADDRESS), {
-                loading: <b>{i18n._(t`Approving helper contract`)}</b>,
-                success: <b>{i18n._(t`Success`)}</b>,
-                error: <b>{i18n._(t`Failed`)}</b>,
+                loading: <b>Approving helper contract</b>,
+                success: <b>Success</b>,
+                error: <b>Failed</b>,
             })
             .then(() => setApproved(true))
     }
@@ -112,16 +108,16 @@ export default function AdventureModal({ open, closeFunction, summoners }: Adven
     return (
         <HeadlessUIModal isOpen={open} onDismiss={closeFunction}>
             <div className="bg-background-end rounded-lg border-2 border-white">
-                <ModalHeader title={i18n._(t`adventure summoners`)} onClose={closeFunction} />
+                <ModalHeader title="adventure summoners" onClose={closeFunction} />
                 <div className="text-center text-white p-4 pb-8 gap-5">
                     {summoners.length > 0 ? (
                         <div>
                             <h2>
-                                {i18n._(t`You have`)} {summoners.length}{' '}
-                                {i18n._(t`summoners available to send for adventure.`)}{' '}
+                                You have {summoners.length}{' '}
+                                summoners available to send for adventure.{' '}
                             </h2>
                             {summoners.length >= 100 && (
-                                <h2 className="mt-1">{i18n._(t`We will send 1 transaction for each 100 summoners`)}</h2>
+                                <h2 className="mt-1">We will send 1 transaction for each 100 summoners</h2>
                             )}
                             {approved ? (
                                 <>
@@ -131,7 +127,7 @@ export default function AdventureModal({ open, closeFunction, summoners }: Adven
                                                 onClick={() => submitTIP()}
                                                 className="bg-green border-white border-2 p-2 uppercase rounded-lg mt-4"
                                             >
-                                                {i18n._(t`send with 0.1 FTM tip for devs`)}
+                                                send with 0.1 FTM tip for devs
                                             </button>
                                         </div>
                                     )}
@@ -140,7 +136,7 @@ export default function AdventureModal({ open, closeFunction, summoners }: Adven
                                             onClick={() => submit()}
                                             className="bg-green border-white border-2 p-2 uppercase rounded-lg mt-4"
                                         >
-                                            {i18n._(t`send summoners`)}
+                                            send summoners
                                         </button>
                                     </div>
                                 </>
@@ -149,13 +145,13 @@ export default function AdventureModal({ open, closeFunction, summoners }: Adven
                                     onClick={() => approveHelper()}
                                     className="bg-green border-white border-2 p-2 uppercase rounded-lg mt-4"
                                 >
-                                    {i18n._(t`approve helper`)}
+                                    approve helper
                                 </button>
                             )}
                         </div>
                     ) : (
                         <div>
-                            <h2>{i18n._(t`No summoners available for adventure  `)} </h2>
+                            <h2>No summoners available for adventure   </h2>
                         </div>
                     )}
                 </div>

@@ -1,7 +1,6 @@
 import { t } from '@lingui/macro'
 import { MinusIcon, PlusIcon } from '@heroicons/react/solid'
 import React, { useEffect, useState } from 'react'
-import { useLingui } from '@lingui/react'
 import { SKILL_URL, SKILLS } from '../../constants/codex/skills'
 import HeadlessUIModal from '../Modal/HeadlessUIModal'
 import ModalHeader from '../Modal/ModalHeader'
@@ -13,8 +12,6 @@ import { SummonerFullData } from '../../hooks/useRarityLibrary'
 import Image from 'next/image'
 
 function SummonerSkillsCard({ summoner }: { summoner: SummonerFullData }): JSX.Element {
-    const { i18n } = useLingui()
-
     const [skill, setSkill] = useState(1)
     const [modal, setModalOpen] = useState(false)
 
@@ -79,9 +76,9 @@ function SummonerSkillsCard({ summoner }: { summoner: SummonerFullData }): JSX.E
             skills[parseInt(k) - 1] = additions[k]
         })
         await toast.promise(set_skills(summoner.id, skills), {
-            loading: <b>{i18n._(t`Assigning skill`)}</b>,
-            success: <b>{i18n._(t`Success`)}</b>,
-            error: <b>{i18n._(t`Failed`)}</b>,
+            loading: <b>Assigning skill</b>,
+            success: <b>Success</b>,
+            error: <b>Failed</b>,
         })
     }
 
@@ -107,11 +104,11 @@ function SummonerSkillsCard({ summoner }: { summoner: SummonerFullData }): JSX.E
             <div className="flex flex-row w-full items-center">
                 <div className="grid grid-cols-1 md:grid-cols-5 md:gap-2 w-full">
                     <div className="bg-card-top col-span-3 md:p-2 p-1 bg-background-cards border-white border-2 rounded-t-2xl md:rounded-tl-2xl md:rounded-tr-none text-left">
-                        <span className="ml-1.5 uppercase">{i18n._(t`skills`)}</span>
+                        <span className="ml-1.5 uppercase">skills</span>
                     </div>
                     <div className="w-full mt-3 md:mt-0 md:p-2 p-1 bg-card-button col-span-2 bg-background-cards border-white border-2 md:rounded-tr-2xl text-center">
                         <span className="uppercase">
-                            {i18n._(t`SP`)}: {availableSP}
+                            SP: {availableSP}
                         </span>
                     </div>
                 </div>
@@ -139,9 +136,9 @@ function SummonerSkillsCard({ summoner }: { summoner: SummonerFullData }): JSX.E
                                         </button>
                                     </div>
                                     <div>
-                                        <p className="uppercase text-sm md:text-lg">{i18n._(data.name)}</p>
+                                        <p className="uppercase text-sm md:text-lg">{data.name}</p>
                                         <p className="text-xs">
-                                            {i18n._(t`SP cost`)}: {spCost(k)} {i18n._(t`Max lvl`)}: {maxLevel(k)}
+                                            SP cost: {spCost(k)} Max lvl: {maxLevel(k)}
                                             {}
                                         </p>
                                     </div>
@@ -194,25 +191,25 @@ function SummonerSkillsCard({ summoner }: { summoner: SummonerFullData }): JSX.E
                                 await assignSkills()
                             }}
                         >
-                            <span className="uppercase">{i18n._(t`assign points`)}</span>
+                            <span className="uppercase">assign points</span>
                         </button>
                     </div>
                 </div>
             </div>
             <HeadlessUIModal isOpen={modal} onDismiss={() => setModalOpen(false)}>
                 <div className="bg-background-end rounded-lg border-2 border-white">
-                    <ModalHeader title={i18n._(SKILLS[skill].name)} onClose={() => setModalOpen(false)} />
+                    <ModalHeader title={SKILLS[skill].name} onClose={() => setModalOpen(false)} />
                     <div>
-                        <h1 className="text-md uppercase text-white mt-2 text-center">{i18n._(t`skill check`)}</h1>
+                        <h1 className="text-md uppercase text-white mt-2 text-center">skill check</h1>
                     </div>
                     <div className="text-justify text-white p-4 pb-8 gap-5">
-                        <h2>{i18n._(SKILLS[skill].check)}</h2>
+                        <h2>{SKILLS[skill].check}</h2>
                     </div>
                     <div>
-                        <h1 className="text-md uppercase text-white mt-2 text-center">{i18n._(t`skill action`)}</h1>
+                        <h1 className="text-md uppercase text-white mt-2 text-center">skill action</h1>
                     </div>
                     <div className="text-justify text-white p-4 pb-8 gap-5">
-                        <h2>{i18n._(SKILLS[skill].action)}</h2>
+                        <h2>{SKILLS[skill].action}</h2>
                     </div>
                     <div className="flex flex-row justify-center pb-8">
                         <a
@@ -221,7 +218,7 @@ function SummonerSkillsCard({ summoner }: { summoner: SummonerFullData }): JSX.E
                             rel="noreferrer"
                             href={skillUrl(skill)}
                         >
-                            <h2>{i18n._(t`read more`)}</h2>
+                            <h2>read more</h2>
                         </a>
                     </div>
                 </div>
