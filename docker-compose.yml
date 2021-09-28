@@ -1,0 +1,16 @@
+version: "3"
+networks:
+  cont_netw01:
+    driver: bridge
+    external: true
+
+services:
+  deploy:
+    networks:
+      - cont_netw01
+    container_name: local_proj
+    build:
+        context: .
+    ports:
+      - "80:3000"
+    restart: unless-stopped
